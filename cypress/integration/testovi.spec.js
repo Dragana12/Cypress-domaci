@@ -26,9 +26,33 @@ describe ('register page', () => {
     cy.get('#password-confirmation').type('test1234');
     cy.get("input[type='checkbox']").click()
     cy.get("button[type='submit']").click()
+    });
+    "/register"
 
-
-    })
+    it('try to register with wrong pass-confirmation', () => {
+        cy.wait(1000);
+        cy.visit ("/");
+        cy.get('#first-name').type('Lola');
+        cy.get('#last-name').type('LolaLo');
+        cy.get('#email').type('mila135@dp.com');
+        cy.get('#password').type('test1234');
+        cy.get('#password-confirmation').type('test12345');
+        cy.get("input[type='checkbox']").click()
+        cy.get("button[type='submit']").click()
+        });
+        it('try to register with unchecked terms and conditions', () => {
+            cy.wait(1000);
+            cy.visit ("/");
+            cy.get('#first-name').type('Lola');
+            cy.get('#last-name').type('LolaLo');
+            cy.get('#email').type('mila1357@dp.com');
+            cy.get('#password').type('test1234');
+            cy.get('#password-confirmation').type('test1234');
+            cy.get("input[type='checkbox']").click()
+            cy.wait(1000);
+            cy.get("input[type='checkbox']").click()
+            cy.get("button[type='submit']").click()
+            });
     });
 
   
